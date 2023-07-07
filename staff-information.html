@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Staff Information</title>
+  </head>
+  <body>
+    <script>
+      let staff = new Object();
+
+      let staffArr = [];
+      let n;
+
+      function inputStaff(i) {
+        let newStaff = new Object();
+        newStaff.id = Number(prompt("Enter staffArr[" + (i + 1) + "]id:"));
+
+        newStaff.fullName = prompt("Enter staffArr[" + (i + 1) + "]full name:");
+
+        newStaff.totalSalary = Number(
+          prompt("Enter staffArr[" + (i + 1) + "]total salary: ")
+        );
+        return newStaff;
+      }
+      function outputStaff(staff) {
+        console.log(staff);
+      }
+
+      function inputStaffArr() {
+        n = Number(prompt("Enter number of staff: "));
+        for (let i = 0; i < n; i++) {
+          staffArr[i] = inputStaff(i);
+        }
+      }
+
+      function outputStaffArr() {
+        for (let i = 0; i < n; i++) {
+          outputStaff(staffArr[i]);
+        }
+      }
+      inputStaffArr();
+      outputStaffArr();
+
+      function sortAscending() {
+        for (let i = 0; i <= n - 2; i++) {
+          for (let j = i + 1; j <= n - 1; j++) {
+            if (
+              Number(staffArr[i].totalSalary) > Number(staffArr[j].totalSalary)
+            ) {
+              let temp = staffArr[i];
+              staffArr[i] = staffArr[j];
+              staffArr[j] = temp;
+            }
+          }
+        }
+      }
+      console.log("stroting ascrnding: ");
+      sortAscending();
+      console.log("After sorting: ");
+      outputStaffArr();
+
+      function compareStaff(staff1, staff2) {
+        if (staff1.totalSalary > staff2.totalSalary) return 1;
+        if (staff1.totalSalary < staff2.totalSalary) return 2;
+        return 0;
+      }
+
+      function findMaxTotalSalary(arr) {
+        var max = arr[0];
+        for (let i = 0; i < n; i++) {
+          if (compareStaff(arr[i], max) == 1) {
+            max = arr[i];
+          }
+        }
+        return max;
+      }
+      
+      console.log("Employee's highest total salary");
+      console.log(findMaxTotalSalary(staffArr));
+    </script>
+  </body>
+</html>
